@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: presto-coordinator
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: presto
+  template:
+    metadata:
+      labels:
+        app: presto
+    spec:
+      containers:
+      - image: beltranalex928/presto-coordinator:latest
+        name: coordinator
+        ports:
+        - containerPort: 8080
