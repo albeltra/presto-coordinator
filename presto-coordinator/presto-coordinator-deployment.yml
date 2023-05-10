@@ -16,5 +16,14 @@ spec:
       containers:
       - image: beltranalex928/presto-coordinator:latest
         name: coordinator
+        volumeMounts:
+          - name: presto-config
+            mountPath: /etc/catalog
+            subPath: ''
         ports:
         - containerPort: 8080
+      volumes:
+        - _type: persistentVolumeClaim
+          persistentVolumeClaim:
+            claimName: presto-config
+          name: presto-config
