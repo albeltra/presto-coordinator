@@ -21,8 +21,7 @@ RUN ln -s /opt/presto-server-${PRESTO_VERSION} /opt/presto
 COPY etc /opt/presto/etc
 
 # Download the Presto CLI and put it in the image
-RUN wget --quiet 
-https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/${PRESTO_VERSION}/presto-cli-${PRESTO_VERSION}-executable.jar
+RUN wget --quiet https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/${PRESTO_VERSION}/presto-cli-${PRESTO_VERSION}-executable.jar
 RUN mv presto-cli-${PRESTO_VERSION}-executable.jar /usr/local/bin/presto
 RUN chmod +x /usr/local/bin/presto
 
