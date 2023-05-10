@@ -8,7 +8,7 @@ ARG PRESTO_BIN=https://repo1.maven.org/maven2/com/facebook/presto/presto-server/
 
 # Update the base image OS and install wget and python
 RUN apt-get update
-RUN apt-get install -y wget python less
+RUN apt-get install -y wget python less uuid-runtime
 
 # Download Presto and unpack it to /opt/presto
 RUN wget --quiet ${PRESTO_BIN}
@@ -26,4 +26,12 @@ RUN mv presto-cli-${PRESTO_VERSION}-executable.jar /usr/local/bin/presto
 RUN chmod +x /usr/local/bin/presto
 
 # Specify the entrypoint to start
-ENTRYPOINT /opt/presto/bin/launcher run
+COPY ./entrypoint.sh ./start_presto.sh /usr/local/bin/
+
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+RUN chmod +x /usr/local/bin/start_presto.sh
+
+ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]
+
+CMD ["/usr/local/bin/start_presto.sh"]
