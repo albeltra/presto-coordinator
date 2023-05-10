@@ -4,8 +4,7 @@ FROM openjdk:8-jre
 ARG PRESTO_VERSION=0.280
 
 # Set the URL to download
-ARG 
-PRESTO_BIN=https://repo1.maven.org/maven2/com/facebook/presto/presto-server/${PRESTO_VERSION}/presto-server-${PRESTO_VERSION}.tar.gz
+ARG PRESTO_BIN=https://repo1.maven.org/maven2/com/facebook/presto/presto-server/${PRESTO_VERSION}/presto-server-${PRESTO_VERSION}.tar.gz
 
 # Update the base image OS and install wget and python
 RUN apt-get update
